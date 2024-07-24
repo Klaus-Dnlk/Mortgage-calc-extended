@@ -1,0 +1,48 @@
+.memoized-bank-card {
+  margin: 8px;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s ease-in-out;
+}
+
+.memoized-bank-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.memoized-bank-card.selected {
+  border: 2px solid #1976d2;
+}
+
+.memoized-bank-card .MuiCardContent-root {
+  padding: 16px;
+}
+
+.memoized-bank-card .bank-name {
+  margin-bottom: 16px;
+}
+
+.memoized-bank-card .bank-details {
+  margin-bottom: 16px;
+}
+
+.memoized-bank-card .calculated-values {
+  margin-bottom: 16px;
+}
+
+.memoized-bank-card .calculated-values-title {
+  margin-bottom: 8px;
+  color: #1976d2;
+}
+
+.memoized-bank-card .select-chip {
+  cursor: pointer;
+}
+
+.memoized-bank-card .bank-detail-item {
+  margin-bottom: 4px;
+}
+
+.memoized-bank-card .calculated-value-item {
+  margin-bottom: 4px;
+} 

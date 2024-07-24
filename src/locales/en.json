@@ -1,0 +1,234 @@
+{
+  "app": {
+    "title": "Simple Mortgage Calculator",
+    "description": "A React-based mortgage calculator application that allows users to manage banks and calculate mortgage payments."
+  },
+  "navigation": {
+    "home": "Home",
+    "banks": "Banks",
+    "calculator": "Calculator",
+    "patterns": "Patterns Demo"
+  },
+  "banks": {
+    "title": "Banks Management",
+    "addBank": "Add New Bank",
+    "noBanks": "No banks found. Add your first bank to get started.",
+    "clickHint": "💡 Click on any bank row to view detailed information",
+    "deleteConfirm": "Are you sure you want to delete this bank?",
+    "deleteTooltip": "Delete bank",
+    "tableHeaders": {
+      "bankName": "Bank Name",
+      "interestRate": "Interest Rate (%)",
+      "maxLoan": "Maximum Loan ($)",
+      "minDownPayment": "Minimum Down Payment ($)",
+      "loanTerm": "Loan Term (years)",
+      "actions": "Actions"
+    }
+  },
+  "bankForm": {
+    "bankName": "Bank name",
+    "maxLoan": "Maximum loan ($)",
+    "minDownPayment": "Minimum down payment ($)",
+    "loanTerm": "Loan term (years)",
+    "interestRate": "Interest rate (%)",
+    "addBank": "Add Bank",
+    "validation": {
+      "bankNameRequired": "Bank name is required",
+      "bankNameCapital": "Bank name must start with a capital letter",
+      "maxLoanRequired": "Maximum loan is required",
+      "maxLoanPositive": "Maximum loan must be a positive number",
+      "minDownPaymentRequired": "Minimum down payment is required",
+      "minDownPaymentPositive": "Minimum down payment must be a positive number",
+      "loanTermRequired": "Loan term is required",
+      "loanTermPositive": "Loan term must be a positive number",
+      "interestRateRequired": "Interest rate is required",
+      "interestRatePositive": "Interest rate must be a positive number",
+      "interestRateMax": "Interest rate cannot exceed 100%",
+      "bankExists": "{bankName} already exists",
+      "addFailed": "Failed to add bank. Please try again."
+    }
+  },
+  "bankDetails": {
+    "title": "Bank Details",
+    "interestRate": "Interest Rate: {rate}%",
+    "maxLoan": "Maximum Loan",
+    "minDownPayment": "Minimum Down Payment",
+    "loanTerm": "Loan Term",
+    "years": "{count, plural, =1 {Year} other {Years}}",
+    "loanAnalysis": "📊 Loan Analysis",
+    "downPaymentPercentage": "Down Payment Percentage:",
+    "monthlyPayment": "Monthly Payment (Est.):",
+    "close": "Close",
+    "selectBank": "Select Bank",
+    "selectBankMessage": "Selected {bankName} for mortgage calculation"
+  },
+  "calculator": {
+    "title": "Mortgage Calculator",
+    "selectBank": "Select a bank",
+    "loanAmount": "Loan Amount ($)",
+    "downPayment": "Down Payment ($)",
+    "calculate": "Calculate",
+    "reset": "Reset",
+    "monthlyPayment": "Monthly Payment:",
+    "totalPayment": "Total Payment:",
+    "totalInterest": "Total Interest:",
+    "validation": {
+      "bankRequired": "Please select a bank",
+      "loanAmountRequired": "Loan amount is required",
+      "loanAmountPositive": "Loan amount must be positive",
+      "downPaymentRequired": "Down payment is required",
+      "downPaymentPositive": "Down payment must be positive",
+      "downPaymentTooHigh": "Down payment cannot exceed loan amount",
+      "loanAmountTooHigh": "Loan amount exceeds maximum loan for selected bank",
+      "downPaymentTooLow": "Down payment is below minimum required for selected bank"
+    },
+    "warnings": {
+      "highDownPayment": "Consider a lower down payment to keep more cash available",
+      "lowDownPayment": "Higher down payment reduces monthly payments and total interest"
+    }
+  },
+  "patterns": {
+    "title": "React Patterns Demo",
+    "description": "This page demonstrates various React patterns for code reusability and maintainability.",
+    "errorBoundary": {
+      "title": "🛡️ ErrorBoundary Demo",
+      "description": "ErrorBoundary catches JavaScript errors anywhere in the child component tree.",
+      "triggerButton": "Trigger Error"
+    },
+    "portal": {
+      "title": "🚪 Portal Demo",
+      "description": "Portals render content outside the normal DOM hierarchy.",
+      "openButton": "Open Portal Modal",
+      "modalTitle": "Portal Modal",
+      "modalDescription": "This modal is rendered using React Portal, which renders content outside the normal DOM hierarchy.",
+      "closeButton": "Close"
+    },
+    "hoc": {
+      "title": "🔄 Higher-Order Component Demo",
+      "description": "HOCs wrap components with additional functionality.",
+      "protectedContent": "🔐 Protected Content (HOC Demo)",
+      "protectedDescription": "This content is only visible when authenticated",
+      "logout": "Logout"
+    },
+    "customHook": {
+      "title": "🎣 Custom Hook Demo",
+      "description": "Custom hooks encapsulate reusable logic.",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "submitForm": "Submit Form"
+    },
+    "renderProps": {
+      "title": "🎭 Render Props Demo",
+      "description": "Render props pattern shares behavior through a prop that receives a function.",
+      "loading": "Loading banks...",
+      "fetchedBanks": "Fetched {count} banks using render props pattern",
+      "refetchButton": "Refetch Data"
+    },
+    "memoization": {
+      "title": "⚡ Memoization Demo",
+      "description": "Memoization prevents unnecessary re-renders and optimizes expensive calculations.",
+      "selectedBank": "Selected bank ID: {id}"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "close": "Close",
+    "submit": "Submit",
+    "reset": "Reset",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "refresh": "Refresh",
+    "export": "Export",
+    "import": "Import",
+    "download": "Download",
+    "upload": "Upload",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register",
+    "forgotPassword": "Forgot Password",
+    "rememberMe": "Remember Me",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "zipCode": "ZIP Code",
+    "country": "Country",
+    "currency": "Currency",
+    "language": "Language",
+    "theme": "Theme",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "autoMode": "Auto Mode"
+  },
+  "dateTime": {
+    "formats": {
+      "short": "MM/dd/yyyy",
+      "long": "EEEE, MMMM do, yyyy",
+      "time": "HH:mm",
+      "dateTime": "MM/dd/yyyy HH:mm"
+    },
+    "relative": {
+      "now": "now",
+      "past": "{time} ago",
+      "future": "in {time}"
+    }
+  },
+  "numbers": {
+    "currency": {
+      "USD": "USD",
+      "EUR": "EUR",
+      "GBP": "GBP"
+    },
+    "decimal": ".",
+    "thousands": ",",
+    "percent": "%"
+  },
+  "pdf": {
+    "export": "Export to PDF",
+    "exportBanks": "Export Banks Comparison",
+    "exportCalculation": "Export Calculation",
+    "downloadSuccess": "PDF downloaded successfully",
+    "downloadError": "Error downloading PDF",
+    "noDataToExport": "No data to export"
+  },
+  "cookies": {
+    "title": "Cookie Settings",
+    "description": "We use cookies to enhance your experience, analyze site traffic, and personalize content. By continuing to use our site, you consent to our use of cookies.",
+    "acceptAll": "Accept All",
+    "acceptNecessary": "Accept Necessary",
+    "rejectAll": "Reject All",
+    "showDetails": "Show Details",
+    "hideDetails": "Hide Details",
+    "privacyPolicy": "Privacy Policy",
+    "necessary": {
+      "title": "Necessary Cookies",
+      "description": "These cookies are essential for the website to function properly. They cannot be disabled."
+    },
+    "analytics": {
+      "title": "Analytics Cookies",
+      "description": "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously."
+    },
+    "marketing": {
+      "title": "Marketing Cookies",
+      "description": "These cookies are used to track visitors across websites to display relevant advertisements."
+    }
+  }
+} 

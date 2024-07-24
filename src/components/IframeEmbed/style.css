@@ -1,0 +1,134 @@
+.iframe-demo-card {
+  margin: 16px;
+  max-width: 1200px;
+}
+
+.iframe-demo-title {
+  margin-bottom: 16px;
+  color: #1976d2;
+}
+
+.iframe-demo-description {
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.iframe-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.iframe-type-select,
+.url-select,
+.custom-url-input,
+.height-input {
+  margin-bottom: 8px;
+}
+
+.load-iframe-button {
+  margin-top: 8px;
+  background-color: #1976d2;
+}
+
+.load-iframe-button:hover {
+  background-color: #1565c0;
+}
+
+.url-error {
+  margin-bottom: 16px;
+}
+
+.iframe-container {
+  margin-top: 24px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.iframe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.iframe-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.demo-iframe {
+  border: none;
+  display: block;
+  width: 100%;
+  min-height: 200px;
+  background-color: #fafafa;
+}
+
+
+
+.security-info {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #1976d2;
+}
+
+.security-title {
+  margin-bottom: 12px;
+  color: #1976d2;
+}
+
+.security-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .iframe-demo-card {
+    margin: 8px;
+  }
+  
+  .iframe-header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .security-items {
+    justify-content: center;
+  }
+}
+
+/* Loading state */
+.iframe-wrapper::before {
+  content: "Loading...";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #666;
+  font-style: italic;
+  z-index: 1;
+}
+
+.demo-iframe:not([src=""]) + .iframe-wrapper::before {
+  display: none;
+}
+
+/* Error state */
+.iframe-error {
+  padding: 20px;
+  text-align: center;
+  color: #d32f2f;
+  background-color: #ffebee;
+  border-radius: 4px;
+  margin: 16px 0;
+} 

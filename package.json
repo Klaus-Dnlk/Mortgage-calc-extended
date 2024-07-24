@@ -1,0 +1,73 @@
+{
+  "name": "mortgage_calc",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://Klaus-Dnlk.github.io/",
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@fontsource/roboto": "^4.5.5",
+    "@hookform/resolvers": "^2.9.11",
+    "@mui/icons-material": "^5.6.0",
+    "@mui/material": "^5.6.0",
+    "@reduxjs/toolkit": "^1.8.1",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.26.1",
+    "eslint": "^8.57.0",
+    "gh-pages": "^3.2.3",
+    "immutable": "^5.1.3",
+    "jest-axe": "^8.0.0",
+    "js-cookie": "^3.0.5",
+    "jspdf": "^3.0.1",
+    "lodash": "^4.17.21",
+    "numeral": "^2.0.6",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-hook-form": "^7.51.3",
+    "react-intl": "^7.1.11",
+    "react-redux": "^7.2.8",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "5.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.4",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^3.1.0",
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.13",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "lint": "npx eslint ."
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "proxy": "http://localhost:5000",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
+    "typedoc": "^0.28.9"
+  }
+}
