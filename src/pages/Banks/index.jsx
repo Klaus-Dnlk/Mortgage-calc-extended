@@ -6,6 +6,7 @@ import { banksOperations, banksSelectors } from '../../redux/banks';
 import AddBankModal from '../Modal';
 import BankDetailsModal from '../../components/BankDetailsModal';
 import BanksStatistics from '../../components/BanksStatistics';
+import FileManager from '../../components/FileManager';
 import './style.css';
 
 import {
@@ -13,6 +14,7 @@ import {
   AddCircleOutlineIcon
 } from '@mui/material';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { generateBanksComparison, savePDF } from '../../utils/pdf-utils';
 
 function Banks() {
@@ -25,6 +27,7 @@ function Banks() {
   const [showModal, setShowModal] = React.useState(false);
   const [selectedBank, setSelectedBank] = React.useState(null);
   const [showDetailsModal, setShowDetailsModal] = React.useState(false);
+  const [showFileManager, setShowFileManager] = React.useState(false);
 
   useEffect(() => {
     dispatch(banksOperations.fetchBanks());
@@ -52,6 +55,21 @@ function Banks() {
     if (window.confirm(intl.formatMessage({ id: 'banks.deleteConfirm' }))) {
       dispatch(banksOperations.deleteBank(bankId));
     }
+  };
+
+  const handleOpenFileManager = () => {
+    setShowFileManager(true);
+  };
+
+  const handleCloseFileManager = () => {
+    setShowFileManager(false);
+  };
+
+  const handleImportBanks = (importedBanks) => {
+    // Add imported banks to the store
+    importedBanks.forEach(bank => {
+      dispatch(banksOperations.addNewBank(bank));
+    });
   };
 
   // Create PDF comparison of all banks
@@ -86,14 +104,24 @@ function Banks() {
           </h1>
           <div className="banks-actions">
             {banks.length > 0 && (
-              <button 
-                className="banks-icon-button"
-                onClick={handleExportBanksPDF}
-                data-testid="export-banks-pdf"
-                title="Export banks comparison to PDF"
-              >
-                <PictureAsPdfIcon />
-              </button>
+              <>
+                <button 
+                  className="banks-icon-button"
+                  onClick={handleExportBanksPDF}
+                  data-testid="export-banks-pdf"
+                  title="Export banks comparison to PDF"
+                >
+                  <PictureAsPdfIcon />
+                </button>
+                <button 
+                  className="banks-icon-button"
+                  onClick={handleOpenFileManager}
+                  data-testid="file-manager-button"
+                  title="Import/Export banks data"
+                >
+                  <FileDownloadIcon />
+                </button>
+              </>
             )}
             <button
               className="banks-button"
@@ -124,6 +152,16 @@ function Banks() {
             bank={selectedBank}
             isOpen={showDetailsModal}
             onClose={handleCloseDetailsModal}
+          />
+        )}
+
+        {showFileManager && (
+          <FileManager
+            banks={banks}
+            onImportBanks={handleImportBanks}
+            isOpen={showFileManager}
+            onClose={handleCloseFileManager}
+            title="Banks Data Manager"
           />
         )}
 
