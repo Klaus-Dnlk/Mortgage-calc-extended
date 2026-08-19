@@ -78,11 +78,12 @@ describe('App Integration Tests', () => {
   });
 
   describe('Navigation Flow', () => {
-    it('should render home page by default', () => {
+    it('should render home page by default', async () => {
       renderWithProviders(<App />);
 
-      // Verify home page content is displayed
-      expect(screen.getByText('Welcome to')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Welcome to')).toBeInTheDocument();
+      });
       expect(screen.getByText('Mortgage Calculator')).toBeInTheDocument();
       expect(screen.getByText(/This application is created for the mortgage calculating service/i)).toBeInTheDocument();
     });
@@ -465,11 +466,12 @@ describe('App Integration Tests', () => {
   });
 
   describe('Internationalization Flow', () => {
-    it('should display localized content', () => {
+    it('should display localized content', async () => {
       renderWithProviders(<App />);
 
-      // Verify localized content is displayed
-      expect(screen.getByText('Welcome to')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Welcome to')).toBeInTheDocument();
+      });
       expect(screen.getByText('Mortgage Calculator')).toBeInTheDocument();
       expect(screen.getByText('Home')).toBeInTheDocument();
       expect(screen.getByText('Calculator')).toBeInTheDocument();
