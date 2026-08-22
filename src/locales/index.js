@@ -1,6 +1,27 @@
 import { IntlProvider } from 'react-intl';
-import enMessages from './en.json';
-import ukMessages from './uk.json';
+import enMessagesNested from './en.json';
+import ukMessagesNested from './uk.json';
+
+/**
+ * react-intl expects flat message ids ("navigation.home"),
+ * while locale files stay nested for readability.
+ */
+export const flattenMessages = (nestedMessages, prefix = '') =>
+  Object.keys(nestedMessages).reduce((messages, key) => {
+    const value = nestedMessages[key];
+    const path = prefix ? `${prefix}.${key}` : key;
+
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
+      Object.assign(messages, flattenMessages(value, path));
+    } else {
+      messages[path] = value;
+    }
+
+    return messages;
+  }, {});
+
+export const enMessages = flattenMessages(enMessagesNested);
+export const ukMessages = flattenMessages(ukMessagesNested);
 
 // Підтримувані локалі
 export const locales = {
@@ -126,4 +147,4 @@ export const formatPercent = (value, locale = getLocale()) => {
   }).format(value / 100);
 };
 
-export default LocaleProvider; 
+export default LocaleProvider;

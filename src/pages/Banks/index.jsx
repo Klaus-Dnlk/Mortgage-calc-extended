@@ -9,10 +9,8 @@ import BanksStatistics from '../../components/BanksStatistics';
 import FileManager from '../../components/FileManager';
 import './style.css';
 
-import {
-  DeleteIcon,
-  AddCircleOutlineIcon
-} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { generateBanksComparison, savePDF } from '../../utils/pdf-utils';

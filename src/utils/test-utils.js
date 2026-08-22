@@ -1,3 +1,7 @@
+/**
+ * C: Uses dummy data for testing / Uses fake objects to decouple from dependencies —
+ * Shared fixtures + mock store helpers for unit and integration tests.
+ */
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';

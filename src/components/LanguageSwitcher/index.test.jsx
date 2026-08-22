@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { IntlProvider } from 'react-intl';
 import LanguageSwitcher from './index';
-import enMessages from '../../locales/en.json';
+import { enMessages } from '../../locales';
 
 // Mock localStorage
 const localStorageMock = {

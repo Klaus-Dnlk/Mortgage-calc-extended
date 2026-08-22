@@ -1,3 +1,7 @@
+/**
+ * C: Uses design patterns (Render Props) —
+ * DataFetcher shares async fetch state without coupling to a specific UI.
+ */
 import React from 'react';
 import { CircularProgress, Alert, Box } from '@mui/material';
 

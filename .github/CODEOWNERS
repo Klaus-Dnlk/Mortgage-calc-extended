@@ -1,0 +1,6 @@
+# C: Configures contribution workflow using version control tools —
+# Route reviews for core app and competency demo areas.
+* @Klaus-Dnlk
+/src/ @Klaus-Dnlk
+/src/components/ @Klaus-Dnlk
+/src/redux/ @Klaus-Dnlk

@@ -4,7 +4,7 @@ import DataFetcher from '../../components/DataFetcher';
 import withAuth from '../../components/withAuth';
 import useFormValidation from '../../hooks/useFormValidation';
 import RefDemo from '../../components/RefDemo';
-import IframeEmbed from '../../components/IframeDemo';
+import IframeEmbed from '../../components/IframeEmbed';
 import './style.css';
 
 /**

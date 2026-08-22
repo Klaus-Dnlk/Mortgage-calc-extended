@@ -1,3 +1,7 @@
+/**
+ * C: Distributes responsibility / Uses design patterns —
+ * Error Boundary isolates render failures from the rest of the tree.
+ */
 import React from 'react';
 import { Box, Typography, Button, Alert } from '@mui/material';
 

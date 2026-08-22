@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CookiesBanner from './index';
-import enMessages from '../../locales/en.json';
+import { enMessages } from '../../locales';
 
 // Mock js-cookie
 jest.mock('js-cookie', () => ({

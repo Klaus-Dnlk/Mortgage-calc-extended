@@ -1,6 +1,26 @@
 .App {
   text-align: center;
+  min-width: 0;
+  overflow-x: hidden;
 }
+
+/* Shared responsive helpers for demo pages */
+@media (max-width: 768px) {
+  .App {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 
 .App-logo {
   height: 40vmin;
