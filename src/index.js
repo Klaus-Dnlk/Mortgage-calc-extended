@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import store from './redux/store'
 import { createRoot } from 'react-dom/client';
 import { LocaleProvider } from './locales'
+import { AuthProvider } from './context/AuthContext'
 import App from './App'
 
 // const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -17,7 +18,9 @@ root.render(
     <LocaleProvider>
       <Provider store={store}>
         <Router>
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
         </Router>
       </Provider>
     </LocaleProvider>

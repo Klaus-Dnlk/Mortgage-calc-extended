@@ -1,0 +1,14 @@
+{
+  "name": "mortgage-calc-functions",
+  "description": "Cloud Functions: Firestore producer → Cloud Tasks → worker (Phase 4)",
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "type": "commonjs",
+  "private": true,
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^6.3.0"
+  }
+}

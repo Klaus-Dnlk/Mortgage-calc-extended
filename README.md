@@ -20,9 +20,88 @@ A React-based mortgage calculator application that allows users to manage banks 
 - **HTTP Client**: Axios
 - **Testing**: Jest, React Testing Library
 - **Build Tool**: Create React App
-- **Deployment**: GitHub Pages
+- **Deployment**: Firebase Hosting (primary) / GitHub Pages (optional)
 
-## Project Structure
+## Firebase (personal cloud — Phase 3)
+
+Covers middle competency **Accesses cloud environment for development and debugging**: CLI access, deploy, Console debugging.
+
+### One-time setup
+
+1. Use your **personal** Google account (same as Firebase Console).
+2. Ensure `.env.local` has `REACT_APP_FIREBASE_*` (needed at **build** time too).
+3. In a terminal:
+
+```bash
+cd Mortgage-calc-extended
+npm install
+npx firebase login
+```
+
+Browser opens → sign in with the **same personal** Google that owns project `mortgage-calc-8c462`.
+
+### Deploy to Hosting
+
+```bash
+npm run deploy:firebase
+```
+
+This runs `npm run build`, then deploys **Hosting** + **Firestore rules**.
+
+After success you get a URL like:
+
+`https://mortgage-calc-8c462.web.app`
+
+### After first deploy (Auth)
+
+Firebase Console → **Authentication** → **Settings** → **Authorized domains**
+
+Add (if missing):
+
+- `mortgage-calc-8c462.web.app`
+- `mortgage-calc-8c462.firebaseapp.com`
+
+`localhost` should already be there for `npm start`.
+
+### Useful CLI commands
+
+| Command | Meaning |
+|---------|---------|
+| `npx firebase login` | Auth CLI to your Google account |
+| `npx firebase projects:list` | See which cloud projects you can access |
+| `npx firebase deploy --only hosting` | Upload `build/` to Hosting CDN |
+| `npx firebase deploy --only firestore:rules` | Publish security rules |
+| `npx firebase open hosting:site` | Open Hosting in browser Console |
+
+### Where to debug in Console
+
+- **Hosting** → release history, domains
+- **Authentication** → Users
+- **Firestore** → Data / Rules
+- **Project Usage** → traffic / reads
+
+### Scripts
+
+- `npm start` — local dev
+- `npm run build` — production bundle in `build/`
+- `npm run deploy:firebase` — build + Firebase Hosting + rules
+- `npm run deploy:functions` — deploy Cloud Functions + Cloud Tasks worker (needs Blaze)
+- `npm run deploy:all` — hosting + rules + functions
+- `npm run deploy` — optional GitHub Pages (legacy)
+
+### Phase 4 — message queue (Cloud Tasks)
+
+Requires **Blaze** billing (personal card + $5 budget alert).
+
+```bash
+cd functions && npm install && cd ..
+npm run deploy:functions
+npm run deploy:firebase
+```
+
+Then: Calculator → Save → Profile shows **Cloud queue** status (`queued` → `completed`).
+
+Flow: Firestore write → `onCalculationCreated` (producer) → Cloud Tasks → `processCalculationTask` (consumer) → `users/{uid}/meta/queueLog`.
 
 ## Getting Started
 
@@ -59,7 +138,8 @@ The application will be available at `http://localhost:3000`.
 - `npm start` - Start development server
 - `npm test` - Run tests
 - `npm run build` - Build for production
-- `npm run deploy` - Deploy to GitHub Pages
+- `npm run deploy` - Deploy to GitHub Pages (optional)
+- `npm run deploy:firebase` - Build + deploy to Firebase Hosting
 - `npm run lint` - Run ESLint
 
 ## API Integration

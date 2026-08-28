@@ -7,7 +7,11 @@
     "home": "Home",
     "banks": "Banks",
     "calculator": "Calculator",
-    "patterns": "Patterns Demo"
+    "patterns": "Patterns Demo",
+    "login": "Login",
+    "register": "Register",
+    "profile": "Profile",
+    "logout": "Logout"
   },
   "banks": {
     "title": "Banks Management",

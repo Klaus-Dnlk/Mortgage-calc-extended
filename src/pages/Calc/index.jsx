@@ -7,26 +7,24 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import { isEmpty, isNumber, round } from 'lodash';
+import SaveIcon from '@mui/icons-material/Save';
+import { isEmpty, isNumber } from 'lodash';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { banksOperations, banksSelectors } from '../../redux/banks';
 import { useSelector, useDispatch } from 'react-redux';
 import numeral from 'numeral';
 import { generateMortgageReport, savePDF } from '../../utils/pdf-utils';
+import useAuth from '../../hooks/useAuth';
+import {
+  calculateMonthlyPayment as calcPayment,
+  saveCalculation,
+} from '../../firebase/calculations';
 import './style.css';
 
 const calculateMonthlyPayment = (principal, annualRate, years) => {
   if (!isNumber(principal) || !isNumber(annualRate) || !isNumber(years)) return 0;
-  
-  const monthlyRate = annualRate / 100 / 12;
-  const numberOfPayments = years * 12;
-  
-  if (monthlyRate === 0) return principal / numberOfPayments;
-  
-  const payment = (principal * monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
-         (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
-  
-  return round(payment, 2);
+  return calcPayment(principal, annualRate, years);
 };
 
 function Calc() {  
@@ -34,6 +32,7 @@ function Calc() {
   const isLoading = useSelector(banksSelectors.getLoading);
   const error = useSelector(banksSelectors.getError);
   const dispatch = useDispatch();
+  const { user, isAuthenticated } = useAuth();
 
   const [formData, setFormData] = useState({
     initialLoan: '',
@@ -45,6 +44,8 @@ function Calc() {
   const [bankValue, setBankValue] = useState('');
   const [validationError, setValidationError] = useState('');
   const [warning, setWarning] = useState('');
+  const [saveMessage, setSaveMessage] = useState('');
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     dispatch(banksOperations.fetchBanks());
@@ -174,6 +175,38 @@ function Calc() {
 
     const doc = generateMortgageReport(calculationData, bankData);
     savePDF(doc, `mortgage-calculation-${new Date().toISOString().split('T')[0]}.pdf`);
+  };
+
+  const handleSaveToCloud = async () => {
+    setSaveMessage('');
+    if (!isAuthenticated || !user) {
+      setValidationError('Please log in to save calculations to the cloud');
+      return;
+    }
+    if (monthPayment <= 0) {
+      setValidationError('Please calculate a payment first');
+      return;
+    }
+    if (!validateForm()) return;
+
+    const selectedBank = banks.find(bank => bank.BankName === bankValue);
+    setSaving(true);
+    try {
+      await saveCalculation(user.uid, {
+        bankId: selectedBank?.id || null,
+        bankName: selectedBank?.BankName || bankValue || 'Custom',
+        initialLoan: formData.initialLoan,
+        downPayment: formData.downPayment,
+        loanTerm: formData.loanTerm,
+        loanApr: formData.loanApr,
+        monthlyPayment: monthPayment,
+      });
+      setSaveMessage('Saved to your cloud cabinet. Open Profile to see history.');
+    } catch (err) {
+      setValidationError(err.message || 'Failed to save calculation');
+    } finally {
+      setSaving(false);
+    }
   };  
 
   if (isLoading) {
@@ -233,6 +266,13 @@ function Calc() {
           {warning && (
             <div className="calc-alert warning">
               {warning}
+            </div>
+          )}
+
+          {saveMessage && (
+            <div className="calc-alert" style={{ background: '#e8f5e9', color: '#2e7d32' }}>
+              {saveMessage}{' '}
+              <RouterLink to="/profile">Go to Profile</RouterLink>
             </div>
           )}
           
@@ -301,6 +341,17 @@ function Calc() {
                 title="Export to PDF"
               >
                 <PictureAsPdfIcon />
+              </button>
+            )}
+            {monthPayment > 0 && (
+              <button
+                className="calc-icon-button export"
+                onClick={handleSaveToCloud}
+                data-testid="save-cloud"
+                title={isAuthenticated ? 'Save to cloud' : 'Log in to save'}
+                disabled={saving}
+              >
+                <SaveIcon />
               </button>
             )}
           </div>

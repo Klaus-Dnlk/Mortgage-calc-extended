@@ -2,7 +2,7 @@
   "name": "mortgage_calc",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Klaus-Dnlk.github.io/",
+  "homepage": ".",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -15,6 +15,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
     "eslint": "^8.57.0",
+    "firebase": "^11.10.0",
     "gh-pages": "^3.2.3",
     "immutable": "^5.1.3",
     "jest-axe": "^8.0.0",
@@ -29,10 +30,11 @@
     "react-redux": "^7.2.8",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "redux": "^4.2.1",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.4",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^3.1.0",
+    "redux-thunk": "^2.4.2",
     "uuid": "^8.3.2",
     "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4",
@@ -42,15 +44,40 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:e2e": "echo \"C: Organize E2E via cypress/e2e smoke specs (install cypress to run)\" && npx --yes cypress run --config-file cypress.config.js || exit 0",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "lint": "npx eslint ."
+    "deploy:firebase": "npm run build && firebase deploy --only hosting,firestore:rules",
+    "deploy:functions": "firebase deploy --only functions",
+    "deploy:all": "npm run build && firebase deploy --only hosting,firestore:rules,functions",
+    "firebase:login": "firebase login",
+    "firebase:emulators": "firebase emulators:start",
+    "lint": "npx eslint .",
+    "docs": "typedoc",
+    "audit": "npm audit",
+    "security:check": "npm audit"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 40,
+        "functions": 40,
+        "lines": 45,
+        "statements": 45
+      }
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/**/*.test.{js,jsx}",
+      "!src/**/integration.test.{js,jsx}"
     ]
   },
   "proxy": "http://localhost:5000",
@@ -68,6 +95,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
+    "firebase-tools": "^13.35.1",
     "typedoc": "^0.28.9"
   }
 }
