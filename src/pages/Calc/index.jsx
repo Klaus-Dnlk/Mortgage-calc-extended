@@ -20,6 +20,7 @@ import {
   calculateMonthlyPayment as calcPayment,
   saveCalculation,
 } from '../../firebase/calculations';
+import { logger } from '../../utils/logger';
 import './style.css';
 
 const calculateMonthlyPayment = (principal, annualRate, years) => {
@@ -118,7 +119,10 @@ function Calc() {
   const handleCalculate = (e) => {
     e.preventDefault();
     
-    if (!validateForm()) return;
+    if (!validateForm()) {
+      logger.warn('Calc form validation failed');
+      return;
+    }
     
     const { initialLoan, loanApr, loanTerm } = formData;
     const payment = calculateMonthlyPayment(
@@ -127,6 +131,10 @@ function Calc() {
       parseFloat(loanTerm)
     );
     
+    logger.info('Monthly payment calculated', {
+      payment,
+      loanTerm: Number(loanTerm),
+    });
     setMonthPayment(payment);
   };
 

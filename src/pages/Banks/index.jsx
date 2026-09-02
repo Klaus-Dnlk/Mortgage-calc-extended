@@ -6,6 +6,7 @@ import { banksOperations, banksSelectors } from '../../redux/banks';
 import AddBankModal from '../Modal';
 import BankDetailsModal from '../../components/BankDetailsModal';
 import BanksStatistics from '../../components/BanksStatistics';
+import BanksInterestChart from '../../components/BanksInterestChart';
 import FileManager from '../../components/FileManager';
 import './style.css';
 
@@ -139,6 +140,7 @@ function Banks() {
 
         <div className="banks-statistics">
           <BanksStatistics />
+          <BanksInterestChart />
         </div>
 
         {showModal && (

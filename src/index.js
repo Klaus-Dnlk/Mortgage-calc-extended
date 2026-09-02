@@ -8,6 +8,11 @@ import { createRoot } from 'react-dom/client';
 import { LocaleProvider } from './locales'
 import { AuthProvider } from './context/AuthContext'
 import App from './App'
+import { logger } from './utils/logger'
+
+logger.info('Mortgage calculator boot', {
+  env: process.env.NODE_ENV,
+})
 
 // const root = ReactDOM.createRoot(document.getElementById('root'))
 const container = document.getElementById('root');

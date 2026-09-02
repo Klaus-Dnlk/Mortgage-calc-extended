@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { apiSecurity, rateLimiting } from '../../utils/security'
+import { logger } from '../../utils/logger'
 
 // Configure axios with security settings
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'https://625314acc534af46cb93846b.mockapi.io/api/'
@@ -38,9 +39,16 @@ axios.interceptors.response.use(
     return response;
   },
   (error) => {
-    // Log security-related errors
     if (error.response?.status === 403) {
-      console.warn('Access forbidden - possible security issue');
+      logger.warn('Access forbidden - possible security issue', {
+        status: 403,
+        url: error.config?.url,
+      });
+    } else {
+      logger.error('API response error', error, {
+        status: error.response?.status,
+        url: error.config?.url,
+      });
     }
     return Promise.reject(error);
   }
@@ -50,9 +58,12 @@ export const fetchBanks = createAsyncThunk(
   'banks/fetchBanks',
   async (_, { rejectWithValue }) => {
     try {
+      logger.debug('Fetching banks')
       const { data } = await axios.get('/banks')
+      logger.info('Banks fetched', { count: Array.isArray(data) ? data.length : 0 })
       return data
     } catch (error) {
+      logger.error('Failed to fetch banks', error)
       return rejectWithValue(error.message)
     }
   },
